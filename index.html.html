@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbican Playgroup - Nurturing Young Minds</title>
+    <style>
+        :root {
+            --primary: #4a86e8;
+            --secondary: #6aa84f;
+            --accent: #f6b26b;
+            --light: #f9f9f9;
+            --dark: #333333;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+            --font-primary: 'Segoe UI', 'Arial', sans-serif;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 10px 0;
+            border-bottom: 2px solid rgba(74, 134, 232, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo img {
+            height: 100px; /* Kept as requested */
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 6px 2px;
+            cursor: pointer;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .login-btn {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background-color: transparent;
+        }
+        
+        .login-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            color: white;
+            padding: 120px 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://lh3.googleusercontent.com/d/1faqZoUheX-M0_Z9M7KSfNBfeVrVS3Ju-');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            margin: 0 20px 20px 20px;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(74, 134, 232, 0.3);
+            border: none;
+        }
+        
+        .btn:hover {
+            background-color: #3a6cb7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(74, 134, 232, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .about-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .ofsted-section {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .ofsted-review {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ofsted-logo {
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        
+        .ofsted-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .ofsted-logo img {
+            max-width: 180px;
+            margin-bottom: 0;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ofsted-content {
+            flex-grow: 1;
+        }
+        
+        .ofsted-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .ofsted-content p::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 40px;
+            color: var(--primary);
+            opacity: 0.5;
+            line-height: 1;
+        }
+        
+        .ofsted-date {
+            font-style: italic;
+            color: #777;
+            margin-top: 25px;
+            padding-left: 0 !important;
+        }
+        
+        .ofsted-date::before {
+            display: none !important;
+        }
+        
+        .ofsted-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+        
+        .ofsted-link:hover {
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 134, 232, 0.3);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        .add-gallery-button {
+            display: none;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 40px auto 0;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(74, 134, 232, 0.3);
+        }
+        
+        .add-gallery-button:hover {
+            background-color: #3a6cb7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 134, 232, 0.4);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info, .find-us {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .contact-info:hover, .find-us:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .contact-info h3, .find-us h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .contact-info h3::after, .find-us h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .contact-info p, .find-us p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        .contact-info strong {
+            color: var(--primary);
+            display: inline-block;
+            min-width: 90px;
+        }
+        
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        .map-container {
+            height: 300px;
+            margin-top: 30px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: opacity 0.3s;
+        }
+        
+        .map-container:hover iframe {
+            opacity: 0.9;
+        }
+        
+        .reviews-section {
+            padding: 80px 0;
+            background-color: var(--light);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .reviews-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, white 0%, var(--light) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .reviews-container {
+            display: flex;
+            animation: scroll 25s linear infinite;
+            margin-top: 20px;
+        }
+        
+        .review-item {
+            background-color: white;
+            padding: 30px;
+            margin: 0 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            min-width: 320px;
+            max-width: 320px;
+            flex-shrink: 0;
+            transition: var(--transition);
+            border-top: 4px solid var(--accent);
+        }
+        
+        .review-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .review-item p:first-child {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .review-item p:first-child::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 40px;
+            color: var(--accent);
+            opacity: 0.5;
+            line-height: 1;
+        }
+        
+        .review-item p:last-child {
+            color: #777;
+            text-align: right;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-335px * 3)); } /* Adjust based on item width + margin */
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .city-crest {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 30px;
+            transition: var(--transition);
+        }
+        
+        .city-crest:hover {
+            transform: scale(1.05);
+        }
+        
+        .city-crest img {
+            max-width: 180px;
+            height: auto;
+            filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+        
+        footer p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .modal-content h3 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .modal-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 134, 232, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #777;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .close-btn:hover {
+            background-color: #f1f1f1;
+            color: var(--dark);
+        }
+        
+        .edit-mode {
+            border: 2px dashed var(--primary);
+            padding: 10px;
+            margin: 10px 0;
+            position: relative;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .edit-mode:hover {
+            background-color: rgba(74, 134, 232, 0.05);
+        }
+        
+        .edit-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 10;
+        }
+        
+        .edit-mode:hover .edit-buttons {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+        
+        .edit-btn, .save-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-right: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .edit-btn:hover, .save-btn:hover {
+            background-color: #3a6cb7;
+            transform: translateY(-2px);
+        }
+        
+        .edit-control {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .ofsted-review {
+                flex-direction: column;
+                align-items: center;
+                padding: 25px;
+            }
+            
+            .ofsted-logo {
+                margin-bottom: 20px;
+            }
+            
+            .logo img {
+                height: 70px; /* Responsive logo size for mobile */
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .contact-info, .find-us {
+                padding: 25px;
+            }
+            
+            .gallery-container {
+                gap: 20px;
+            }
+            
+            .review-item {
+                min-width: 280px;
+                max-width: 280px;
+                padding: 20px;
+            }
+            
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-295px * 3)); }
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a class="logo editable" id="logo-link" onclick="scrollToSection('hero')">
+                    <img src="https://lh3.googleusercontent.com/d/10A1ex0p4LB45HK1cdaEIwYWuCTZ8sOR_" alt="Barbican Playgroup Logo">
+                </a>
+                <div class="nav-links">
+                    <a onclick="scrollToSection('about')">About Us</a>
+                    <a onclick="scrollToSection('gallery')">Gallery</a>
+                    <a onclick="scrollToSection('contact')">Contact & Location</a>
+                </div>
+                <button class="login-btn" onclick="openLoginModal()">Admin</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="container">
+            <h2 class="editable" id="hero-title">Welcome to Barbican Playgroup</h2>
+            <p class="editable" id="hero-text">A nurturing environment where children learn, play, and grow together in the heart of the Barbican.</p>
+            <a class="btn" onclick="scrollToSection('contact')">Get in Touch</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="editable" id="about-header">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="editable" id="about-text-1">Barbican Playgroup has been providing high-quality early years education and care for children aged 2-4 years since 1975. Our dedicated team of qualified staff create a safe, stimulating environment where children can explore, learn, and develop at their own pace.</p>
+                    <p class="editable" id="about-text-2">We follow the Early Years Foundation Stage (EYFS) curriculum, which focuses on the holistic development of children through play-based learning. Our activities are designed to nurture curiosity, creativity, and confidence in every child.</p>
+                </div>
+                <div class="about-image editable" id="about-image">
+                    <img src="https://lh3.googleusercontent.com/d/1peSMgDZQ8Btpjba_TOekJSS8zInUsyfj" alt="Children playing at Barbican Playgroup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ofsted-section" id="ofsted">
+        <div class="container">
+            <div class="ofsted-review">
+                <div class="ofsted-logo editable" id="ofsted-logo">
+                    <img src="https://lh3.googleusercontent.com/d/11cMMUoNXqZPZGFR6WCd42X2tKmVf2Af3" alt="Ofsted Logo">
+                </div>
+                <div class="ofsted-content">
+                    <p class="editable" id="ofsted-text">"The manager and staff provide an excellently planned environment and curriculum for the children. Staff are great role models, interacting clearly and enthusiastically with the children throughout the playgroup session. Children are confident, highly motivated and eager to join in the activities. The children communicate well and children who speak English as an additional language are fully supported to help them develop their communication skills."</p>
+                    <p class="editable" id="ofsted-quote-2">"The staff know and nurture the children really well. They understand the children's development and interests fully and plan activities that continually excite the children and feed their natural curiosity. The children have the opportunity to explore the community around them, benefiting from the museums and exhibitions close by."</p>
+                    <p class="editable" id="ofsted-date">Last inspection: 23 January 2020</p>
+                    <a href="https://files.ofsted.gov.uk/v1/file/50146217" target="_blank" class="ofsted-link">Read the full Ofsted report</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Our Playgroup Gallery</h2>
+            <div class="gallery-container" id="gallery-container">
+                <div class="gallery-item editable" id="gallery-item-1">
+                    <img src="https://lh3.googleusercontent.com/d/1C5aWhJ81CaNRIICGDZWutw7dWSSAIAGO" alt="Children engaged in art activities">
+                </div>
+                <div class="gallery-item editable" id="gallery-item-2">
+                    <img src="https://lh3.googleusercontent.com/d/172phOeDK8fwi7LyHfSvNa79Z8He4kDDE" alt="Outdoor play area">
+                </div>
+                <div class="gallery-item editable" id="gallery-item-3">
+                    <img src="https://lh3.googleusercontent.com/d/172phOeDK8fwi7LyHfSvNa79Z8He4kDDE" alt="Story time at playgroup">
+                </div>
+                <div class="gallery-item editable" id="gallery-item-4">
+                    <img src="https://lh3.googleusercontent.com/d/1zH8NVl7dFWHzq2bufkuQ2F2j3DYyQKTD" alt="Children playing with blocks">
+                </div>
+            </div>
+            <button id="add-gallery-button" class="add-gallery-button" onclick="openAddImageModal()">Add New Image</button>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact & Location</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p class="editable" id="contact-info">
+                        <strong>Phone:</strong> 020 7638 2718<br>
+                        <strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1989f979eb1939083939892909f819d908896839e8481df929edf849a">[email&#160;protected]</a><br>
+                        <strong>Hours:</strong><br>
+                        <span style="display: flex; justify-content: space-between; max-width: 250px; margin-bottom: 5px;">
+                            <span>Monday:</span>
+                            <span>9:00 - 13:00</span>
+                        </span>
+                        <span style="display: flex; justify-content: space-between; max-width: 250px; margin-bottom: 5px;">
+                            <span>Tuesday:</span>
+                            <span>9:00 - 14:45</span>
+                        </span>
+                        <span style="display: flex; justify-content: space-between; max-width: 250px; margin-bottom: 5px;">
+                            <span>Wednesday:</span>
+                            <span>9:00 - 14:45</span>
+                        </span>
+                        <span style="display: flex; justify-content: space-between; max-width: 250px; margin-bottom: 5px;">
+                            <span>Thursday:</span>
+                            <span>9:00 - 14:45</span>
+                        </span>
+                        <span style="display: flex; justify-content: space-between; max-width: 250px; margin-bottom: 5px;">
+                            <span>Friday:</span>
+                            <span>9:00 - 13:00</span>
+                        </span>
+                        <strong>Address:</strong> Level 01 & 02, Andrewes House, Barbican, London EC2Y 8AX
+                    </p>
+                    
+                    <h3>Enrolment Information</h3>
+                    <p class="editable" id="enrolment-info">
+                        We welcome children from ages 2-4 years. To register your interest or arrange a visit, please contact us by phone or email. We recommend registering your child early as places are limited.
+                    </p>
+                </div>
+                
+                <div class="find-us">
+                    <h3>How to Find Us</h3>
+                    <p class="editable" id="directions">
+                        We are located within the Barbican Estate in Andrewes House. The nearest tube stations are Barbican (Circle, Hammersmith & City, Metropolitan lines) and Moorgate (Northern, Circle, Hammersmith & City, Metropolitan lines).
+                    </p>
+                    
+                    <div class="map-container" id="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1241.3932698307037!2d-0.09233441061544298!3d51.51877118794843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMxJzA3LjQiTiAwwrAwNScyNS4wIlc!5e0!3m2!1sen!2suk!4v1708950661272!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <div class="container">
+            <h2>Parent Reviews</h2>
+            <div class="reviews-container">
+                <div class="review-item">
+                    <p>"An amazing playgroup! My child has thrived here."</p>
+                    <p><strong>- Sarah M.</strong></p>
+                </div>
+                <div class="review-item">
+                    <p>"The staff are so caring and the activities are wonderful."</p>
+                    <p><strong>- John P.</strong></p>
+                </div>
+                <div class="review-item">
+                    <p>"A fantastic start for any child. Highly recommend!"</p>
+                    <p><strong>- Emily R.</strong></p>
+                </div>
+                <div class="review-item">
+                    <p>"An amazing playgroup! My child has thrived here."</p>
+                    <p><strong>- Sarah M.</strong></p>
+                </div>
+                <div class="review-item">
+                    <p>"The staff are so caring and the activities are wonderful."</p>
+                    <p><strong>- John P.</strong></p>
+                </div>
+                <div class="review-item">
+                    <p>"A fantastic start for any child. Highly recommend!"</p>
+                    <p><strong>- Emily R.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="city-crest">
+                <img src="https://lh3.googleusercontent.com/d/1HmuvBhmHHI4BuzgI3w3UJuFM_srVf5nl" alt="City of London Crest">
+            </div>
+            <p class="editable" id="footer-text">© 2025 Barbican Playgroup. All rights reserved.</p>
+            <div class="footer-links">
+                <a onclick="alert('Privacy Policy Coming Soon')">Privacy Policy</a>
+                <a onclick="alert('Terms of Service Coming Soon')">Terms of Service</a>
+                <a onclick="alert('Safeguarding Info Coming Soon')">Safeguarding</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h3>Admin Login</h3>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-actions">
+                <button class="close-btn" onclick="closeLoginModal()">Cancel</button>
+                <button class="btn" onclick="login()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="addImageModal" class="modal">
+        <div class="modal-content">
+            <h3>Add New Gallery Image</h3>
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input type="text" id="imageUrl" name="imageUrl" placeholder="Enter image URL">
+            </div>
+            <div class="form-group">
+                <label for="imageAlt">Image Alt Text</label>
+                <input type="text" id="imageAlt" name="imageAlt" placeholder="Enter image description">
+            </div>
+            <div class="form-actions">
+                <button class="close-btn" onclick="closeAddImageModal()">Cancel</button>
+                <button class="btn" onclick="addNewGalleryImage()">Add Image</button>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        const adminUser = { username: 'admin', password: 'password123' };
+        let isEditMode = false;
+        let galleryItemCounter = 5; // Start from 5 since we already have 4 items
+        
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+        
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        
+        function openAddImageModal() {
+            document.getElementById('addImageModal').style.display = 'flex';
+        }
+        
+        function closeAddImageModal() {
+            document.getElementById('addImageModal').style.display = 'none';
+        }
+        
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === adminUser.username && password === adminUser.password) {
+                closeLoginModal();
+                enableEditMode();
+                alert('You are now in edit mode. Click Edit on text or images to modify content.');
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        }
+        
+        function enableEditMode() {
+            isEditMode = true;
+            
+            const editableElements = document.querySelectorAll('.editable');
+            editableElements.forEach(element => {
+                element.classList.add('edit-mode');
+                
+                const editButtons = document.createElement('div');
+                editButtons.className = 'edit-buttons';
+                editButtons.innerHTML = `<button class="edit-btn" onclick="editContent('${element.id}')">Edit</button>`;
+                element.appendChild(editButtons);
+            });
+            
+            // Show add gallery button
+            document.getElementById('add-gallery-button').style.display = 'block';
+            
+            const nav = document.querySelector('nav');
+            const logoutBtn = document.createElement('button');
+            logoutBtn.className = 'btn';
+            logoutBtn.textContent = 'Exit Edit Mode';
+            logoutBtn.style.marginLeft = '10px';
+            logoutBtn.onclick = disableEditMode;
+            nav.appendChild(logoutBtn);
+
+            const downloadBtn = document.createElement('button');
+            downloadBtn.className = 'btn';
+            downloadBtn.textContent = 'Download HTML';
+            downloadBtn.style.marginLeft = '10px';
+            downloadBtn.onclick = downloadHTML;
+            nav.appendChild(downloadBtn);
+        }
+        
+        function disableEditMode() {
+            isEditMode = false;
+            
+            const editableElements = document.querySelectorAll('.edit-mode');
+            editableElements.forEach(element => {
+                element.classList.remove('edit-mode');
+                const editButtons = element.querySelector('.edit-buttons');
+                if (editButtons) {
+                    element.removeChild(editButtons);
+                }
+            });
+            
+            // Hide add gallery button
+            document.getElementById('add-gallery-button').style.display = 'none';
+            
+            // Remove only the buttons we added for edit mode, not all buttons
+            const btns = document.querySelectorAll('nav .btn');
+            btns.forEach(btn => {
+                btn.parentNode.removeChild(btn);
+            });
+        }
+        
+        function editContent(elementId) {
+            const element = document.getElementById(elementId);
+            const isImage = element.querySelector('img') !== null;
+            
+            if (isImage) {
+                const img = element.querySelector('img');
+                const currentSrc = img.src;
+                const currentAlt = img.alt || '';
+                
+                const imgUrlInput = document.createElement('input');
+                imgUrlInput.type = 'text';
+                imgUrlInput.value = currentSrc;
+                imgUrlInput.style.width = '100%';
+                imgUrlInput.style.padding = '10px';
+                imgUrlInput.style.marginBottom = '10px';
+                
+                const imgAltInput = document.createElement('input');
+                imgAltInput.type = 'text';
+                imgAltInput.value = currentAlt;
+                imgAltInput.placeholder = 'Image description';
+                imgAltInput.style.width = '100%';
+                imgAltInput.style.padding = '10px';
+                imgAltInput.style.marginBottom = '10px';
+                
+                const saveButton = document.createElement('button');
+                saveButton.className = 'btn';
+                saveButton.textContent = 'Save Image';
+                saveButton.onclick = function() {
+                    img.src = imgUrlInput.value;
+                    img.alt = imgAltInput.value;
+                    element.innerHTML = '';
+                    if (element.id === 'logo-link') {
+                        element.innerHTML = `<img src="${imgUrlInput.value}" alt="${imgAltInput.value}">`;
+                    } else {
+                        element.appendChild(img);
+                    }
+                    const editButtons = document.createElement('div');
+                    editButtons.className = 'edit-buttons';
+                    editButtons.innerHTML = `<button class="edit-btn" onclick="editContent('${elementId}')">Edit</button>`;
+                    element.appendChild(editButtons);
+                };
+                
+                element.innerHTML = '';
+                element.appendChild(document.createElement('p')).textContent = 'Image URL:';
+                element.appendChild(imgUrlInput);
+                element.appendChild(document.createElement('p')).textContent = 'Image Alt Text:';
+                element.appendChild(imgAltInput);
+                element.appendChild(saveButton);
+            } else {
+                const currentContent = element.innerText;
+                
+                const textarea = document.createElement('textarea');
+                textarea.value = currentContent;
+                textarea.style.width = '100%';
+                textarea.style.height = '150px';
+                textarea.style.padding = '10px';
+                textarea.style.marginBottom = '10px';
+                
+                const saveButton = document.createElement('button');
+                saveButton.className = 'btn';
+                saveButton.textContent = 'Save Changes';
+                saveButton.onclick = function() {
+                    element.innerText = textarea.value;
+                    const editButtons = document.createElement('div');
+                    editButtons.className = 'edit-buttons';
+                    editButtons.innerHTML = `<button class="edit-btn" onclick="editContent('${elementId}')">Edit</button>`;
+                    element.appendChild(editButtons);
+                };
+                
+                element.innerHTML = '';
+                element.appendChild(textarea);
+                element.appendChild(saveButton);
+            }
+        }
+        
+        function addNewGalleryImage() {
+            const imageUrl = document.getElementById('imageUrl').value;
+            const imageAlt = document.getElementById('imageAlt').value || 'Gallery image';
+            
+            if (!imageUrl) {
+                alert('Please enter an image URL');
+                return;
+            }
+            
+            // Create new gallery item
+            const galleryContainer = document.getElementById('gallery-container');
+            const newItem = document.createElement('div');
+            newItem.className = 'gallery-item editable';
+            newItem.id = `gallery-item-${galleryItemCounter}`;
+            
+            // Create the image element
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = imageAlt;
+            
+            // Append image to gallery item
+            newItem.appendChild(img);
+            
+            // Add edit buttons
+            const editButtons = document.createElement('div');
+            editButtons.className = 'edit-buttons';
+            editButtons.innerHTML = `<button class="edit-btn" onclick="editContent('gallery-item-${galleryItemCounter}')">Edit</button>`;
+            newItem.appendChild(editButtons);
+            
+            // Add edit-mode class
+            newItem.classList.add('edit-mode');
+            
+            // Append to gallery container
+            galleryContainer.appendChild(newItem);
+            
+            // Increment counter for next item
+            galleryItemCounter++;
+            
+            // Close modal
+            closeAddImageModal();
+            
+            // Clear inputs
+            document.getElementById('imageUrl').value = '';
+            document.getElementById('imageAlt').value = '';
+        }
+        
+        function downloadHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'barbican_playgroup.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const loginModal = document.getElementById('loginModal');
+            const addImageModal = document.getElementById('addImageModal');
+            
+            if (event.target === loginModal) {
+                closeLoginModal();
+            }
+            
+            if (addImageModal && event.target === addImageModal) {
+                closeAddImageModal();
+            }
+        };
+    </script>
+</body>
+</html>
