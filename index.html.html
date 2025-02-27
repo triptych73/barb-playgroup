@@ -48,6 +48,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
+            position: relative;
         }
         
         .logo {
@@ -65,12 +66,15 @@
         .logo img {
             height: 100px; /* Kept as requested */
             border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            box-shadow: none; /* Removed the box-shadow */
         }
         
         .nav-links {
             display: flex;
             gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .nav-links a {
@@ -128,8 +132,8 @@
             background-size: cover;
             background-position: center;
             text-align: center;
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-            margin: 0 20px 20px 20px;
+            margin: 0;
+            border-radius: 0;
         }
         
         .hero h2 {
@@ -771,7 +775,41 @@
             }
             
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 100;
+                transform: none;
+                left: auto;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
             }
             
             .hero h2 {
@@ -824,6 +862,35 @@
                 100% { transform: translateX(calc(-295px * 3)); }
             }
         }
+
+        .admin-link {
+            color: var(--light);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .admin-link:hover {
+            opacity: 1;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 200;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -838,7 +905,11 @@
                     <a onclick="scrollToSection('gallery')">Gallery</a>
                     <a onclick="scrollToSection('contact')">Contact & Location</a>
                 </div>
-                <button class="login-btn" onclick="openLoginModal()">Admin</button>
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </nav>
         </div>
     </header>
@@ -911,7 +982,7 @@
                     <h3>Get in Touch</h3>
                     <p class="editable" id="contact-info">
                         <strong>Phone:</strong> 020 7638 2718<br>
-                        <strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1989f979eb1939083939892909f819d908896839e8481df929edf849a">[email&#160;protected]</a><br>
+                        <strong>Email:</strong> <a href="mailto:maryroseclackson@yahoo.com">maryroseclackson@yahoo.com</a><br>
                         <strong>Hours:</strong><br>
                         <span style="display: flex; justify-content: space-between; max-width: 250px; margin-bottom: 5px;">
                             <span>Monday:</span>
@@ -949,7 +1020,7 @@
                     </p>
                     
                     <div class="map-container" id="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1241.3932698307037!2d-0.09233441061544298!3d51.51877118794843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMxJzA3LjQiTiAwwrAwNScyNS4wIlc!5e0!3m2!1sen!2suk!4v1708950661272!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.7865396614074!2d-0.09381923469259596!3d51.51870531819576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMxJzA3LjQiTiAwwrAwNScyOC44Ilc!5e0!3m2!1sen!2suk!4v1708950661272!5m2!1sen!2suk&zoom=16" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -998,6 +1069,7 @@
                 <a onclick="alert('Privacy Policy Coming Soon')">Privacy Policy</a>
                 <a onclick="alert('Terms of Service Coming Soon')">Terms of Service</a>
                 <a onclick="alert('Safeguarding Info Coming Soon')">Safeguarding</a>
+                <a onclick="openLoginModal()" class="admin-link">Admin</a>
             </div>
         </div>
     </footer>
@@ -1277,6 +1349,35 @@
                 closeAddImageModal();
             }
         };
+
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const menuToggle = document.querySelector('.mobile-menu-toggle');
+                
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
     </script>
 </body>
 </html>
